@@ -1,1 +1,1 @@
-subdir= Frameworks Modules
+SUBDIRS= Frameworks Modules

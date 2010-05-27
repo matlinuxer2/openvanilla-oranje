@@ -1,1 +1,1 @@
-subdir= OVIMGeneric OVIMPhonetic SharedLibrary
+SUBDIRS= SharedLibrary OVIMGeneric OVIMPhonetic 

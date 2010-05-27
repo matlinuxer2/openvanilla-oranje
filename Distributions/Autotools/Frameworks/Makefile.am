@@ -7,3 +7,4 @@
 #./OpenVanilla/Headers/OpenVanilla.h
 #./OpenVanilla/Source/FrameworkStub.cpp
 #./OpenVanilla/OpenVanillaFramework-Info.plist
+SUBDIRS= OpenVanilla

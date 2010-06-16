@@ -1,3 +1,8 @@
+Required packages in debian:
+
+    *. libtool
+    *. autools-dev
+
 0. synchronize the source tree into this directory.
 
 	`./sync.sh`

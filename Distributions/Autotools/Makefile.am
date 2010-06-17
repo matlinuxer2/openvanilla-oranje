@@ -1,1 +1,1 @@
-SUBDIRS= Frameworks Modules
+SUBDIRS= Frameworks Modules DataTables

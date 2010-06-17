@@ -41,15 +41,16 @@ AC_CHECK_FUNCS([bzero mkdir munmap rmdir select strcasecmp strchr strcspn strspn
 
 
 AC_CONFIG_FILES([
-Frameworks/OpenVanilla/Headers/Makefile
-Frameworks/OpenVanilla/Source/Makefile
-Frameworks/OpenVanilla/Makefile
+DataTables/Makefile
 Frameworks/Makefile
+Frameworks/OpenVanilla/Headers/Makefile
+Frameworks/OpenVanilla/Makefile
+Frameworks/OpenVanilla/Source/Makefile
+Makefile
+Modules/Makefile
 Modules/OVIMGeneric/Makefile
 Modules/OVIMPhonetic/Makefile
 Modules/SharedLibrary/Makefile
-Modules/Makefile
-Makefile
 ])
 
 

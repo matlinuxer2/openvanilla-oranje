@@ -26,6 +26,7 @@ lndir_sh()
 	to_dir=$( readlink -f $2 )
 
 	if [ ! -d $from_dir ]; then return ; fi
+	install -d $to_dir
 
 	dir_delta=$( relative_delta $from_dir $to_dir )
 	#echo "delta $dir_delta"
@@ -54,6 +55,7 @@ CUR_DIR=$( dirname $( readlink -f $0 ) )
 
 lndir_sh ${CUR_DIR}/../../Frameworks/ ./Frameworks/
 lndir_sh ${CUR_DIR}/../../Modules/ ./Modules/
+lndir_sh ${CUR_DIR}/../../DataTables/ ./DataTables/
 
 cd "${CUR_DIR}/Frameworks/OpenVanilla"
 ln -sf ./Headers/ ./OpenVanilla

@@ -2,11 +2,11 @@
 //
 // Copyright (c) 2004-2008 The OpenVanilla Project (http://openvanilla.org)
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
 // are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright
 //    notice, this list of conditions and the following disclaimer.
 // 2. Redistributions in binary form must reproduce the above copyright
@@ -15,7 +15,7 @@
 // 3. Neither the name of OpenVanilla nor the names of its contributors
 //    may be used to endorse or promote products derived from this software
 //    without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -41,9 +41,10 @@
     #include <unistd.h>
 
     #ifdef __linux__
-    	#include <stdlib.h>
+        #include <stdio.h>
+        #include <stdlib.h>
     #endif
-#else   
+#else
     #include "OpenVanilla.h"
     #include "OVUtility.h"
 	//<comment author='b6s'> Uses OVOSDef.h instead.
@@ -59,19 +60,19 @@
 const char *clExtension=NULL;
 
 void CLSplitString(const char *s, string& k, string& v) {
-   
+
     // find first \s
     size_t fs=strcspn(s, " \t");
-    
+
     // find then the non \s
     size_t fl=strspn(s+fs, " \t");
-    
+
     // find until end
     size_t en=strcspn(s+fs+fl, "\n\r");
 
     string ss(s);
     k=ss.substr(0, fs);
-    v=ss.substr(fs+fl, en);    
+    v=ss.substr(fs+fl, en);
 }
 
 #ifndef WIN32
@@ -84,7 +85,7 @@ void CLSplitString(const char *s, string& k, string& v) {
         const char *selectfilter = clExtension ? clExtension : ".cin";
         int p=strlen(entry->d_name)-strlen(selectfilter);
         if (p<0) return 0;
-        if (!strcmp(entry->d_name+p, selectfilter)) return 1; 
+        if (!strcmp(entry->d_name+p, selectfilter)) return 1;
         return 0;
     }
 #else
@@ -95,7 +96,7 @@ void CLSplitString(const char *s, string& k, string& v) {
         char *selectfilter = ".cin";
         size_t p=strlen(entry.cFileName)-strlen(selectfilter);
         if (p<0) return 0;
-        if (!strcmp(entry.cFileName+p, selectfilter)) return 1; 
+        if (!strcmp(entry.cFileName+p, selectfilter)) return 1;
         return 0;
     }
 #endif
@@ -108,23 +109,23 @@ OVCINList::OVCINList(const char *pathseparator) {
 #ifndef WIN32
     int OVCINList::load(const char *loadpath, const char *extension) {
         clExtension=extension;
-    
+
         struct dirent **files = NULL;
-        int count=scandir(loadpath, &files, CLFileSelect, alphasort);        
+        int count=scandir(loadpath, &files, CLFileSelect, alphasort);
 
         int loaded=0;
         for (int i=0; i<count; i++) {
             if (preparse(loadpath, files[i]->d_name)) loaded++;
             free(files[i]);
         }
-		
+
 		if (files) {
 			free(files);
 		}
-		
+
         return loaded;
     }
-#else   
+#else
     int OVCINList::load(const char *loadpath, const char *extension) {
 		int loaded=0;
 		BOOL fFinished;
@@ -189,18 +190,18 @@ bool OVCINList::preparse(const char *loadpath, const char *filename) {
     int line=0;
     const size_t bs=2049;
     char buf[bs];
-    bzero(buf, bs);	
-    
+    bzero(buf, bs);
+
     string k, v;
-    
+
     while (!feof(in))
     {
         fgets(buf, bs-1, in);
         if (buf[0]=='#') continue;      // ignore comment
 
-        CLSplitString(buf, k, v);        
+        CLSplitString(buf, k, v);
         const char *key=k.c_str();
-            
+
 		if (!strcasecmp(key, "%ename")) info.ename=v;
 		else if (!strcasecmp(key, "%cname")) info.cname=v;
 		else if (!strcasecmp(key, "%tcname")) info.tcname=v;
@@ -209,7 +210,7 @@ bool OVCINList::preparse(const char *loadpath, const char *filename) {
         line++;
         if (line >= CL_PREPARSELIMIT) break;
     }
-   
+
     fclose(in);
 
     // some fallbacks..
@@ -218,10 +219,10 @@ bool OVCINList::preparse(const char *loadpath, const char *filename) {
     if (!info.tcname.length()) info.tcname=info.cname;
     if (!info.scname.length()) info.scname=info.cname;
     list.push_back(info);
-	
+
 	murmur("Loaded: longfilename=%s, shortfilename=%s, ename=%s, cname=%s, tcname=%s, scname=%s",
-	   info.longfilename.c_str(), info.shortfilename.c_str(), info.ename.c_str(), 
+	   info.longfilename.c_str(), info.shortfilename.c_str(), info.ename.c_str(),
 	   info.cname.c_str(), info.tcname.c_str(), info.scname.c_str());
-	
+
     return 1;
 }

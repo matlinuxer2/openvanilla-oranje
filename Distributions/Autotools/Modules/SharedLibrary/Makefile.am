@@ -1,6 +1,6 @@
-noinst_LIBRARIES = libSharedLibrary.a
+noinst_LTLIBRARIES = libSharedLibrary.la
 
-libSharedLibrary_a_SOURCES = OVCIN.cpp \
+libSharedLibrary_la_SOURCES = OVCIN.cpp \
                             OVCIN.h \
                             OVCINInfo.cpp \
                             OVCINInfo.h \
@@ -16,8 +16,4 @@ libSharedLibrary_a_SOURCES = OVCIN.cpp \
                             OVStringToolKit.cpp \
                             OVStringToolKit.h 
 
-libSharedLibrary_a_CPPFLAGS = -I$(top_srcdir)/Frameworks/OpenVanilla -I$(top_srcdir)/Frameworks/OpenVanilla/Headers
-#libSharedLibrary_a_LDFLAGS =
-#libSharedLibrary_a_LIBADD =
-
-#EXTRA_DIST= OVIMGeneric-Info.plist
+libSharedLibrary_la_CPPFLAGS = -I$(top_srcdir)/Frameworks/OpenVanilla -I$(top_srcdir)/Frameworks/OpenVanilla/Headers

@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.63])
-AC_INIT([openvanilla-modules], [0.9.0a1], [http://github.com/lukhnos/openvanilla-oranje/issues])
+AC_INIT([openvanilla-modules], [0.9.0a1-devel], [http://github.com/lukhnos/openvanilla-oranje/issues])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([config.h])
@@ -49,7 +49,6 @@ Frameworks/OpenVanilla/Source/Makefile
 Makefile
 Modules/Makefile
 Modules/OVIMGeneric/Makefile
-Modules/OVIMPhonetic/Makefile
 Modules/SharedLibrary/Makefile
 ])
 

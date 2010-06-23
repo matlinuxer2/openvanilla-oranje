@@ -6,6 +6,4 @@ libovimgeneric_la_CPPFLAGS = -I$(top_srcdir)/Frameworks/OpenVanilla -I$(top_srcd
 libovimgeneric_la_LIBADD = ../SharedLibrary/libSharedLibrary.la
 libovimgeneric_la_LDFLAGS = -module -avoid-version -no-undefined -Wl,-E -Bsymbolic
 
-ovimgenericdir=$(libdir)/OVIMGeneric/
-
 EXTRA_DIST= OVIMGeneric-Info.plist

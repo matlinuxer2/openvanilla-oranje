@@ -17,4 +17,4 @@ Required packages in debian:
 
 3. make tarball for release
 
-	`make distcheck && make dist-gzip `
+	`make distcheck`

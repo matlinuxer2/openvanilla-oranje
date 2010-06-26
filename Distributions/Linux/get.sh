@@ -5,7 +5,7 @@ function get_and_unzip()
     local src=$1
     local dst=$2
 
-    if ! [ -f $1 ]; then
+    if ! [ -f $dst ]; then
         wget -q -O - $src | gzip -d > $dst
     fi
 }
@@ -14,7 +14,8 @@ function site1_get_and_unzip()
 {
     local filename=$1
 
-    get_and_unzip http://ftp.kh.edu.tw/odp/OXIM/cin_tables/$filename.gz $filename
+    install -d DataTables
+    get_and_unzip http://ftp.kh.edu.tw/odp/OXIM/cin_tables/$filename.gz DataTables/$filename
 }
 
 site1_get_and_unzip hiragana.cin
@@ -44,4 +45,18 @@ site1_get_and_unzip 4corner.cin
 site1_get_and_unzip 4corner5.cin
 site1_get_and_unzip dapu.cin
 site1_get_and_unzip dna.cin
-
+site1_get_and_unzip ckc.cin
+site1_get_and_unzip ez.cin
+site1_get_and_unzip jsm.cin
+site1_get_and_unzip newcj.cin
+site1_get_and_unzip newcj3.cin
+site1_get_and_unzip roman.cin
+site1_get_and_unzip scj62.cin
+site1_get_and_unzip simplex5.cin
+site1_get_and_unzip hailu.cin
+site1_get_and_unzip kks_hakka_henry.cin
+site1_get_and_unzip kks_hakka_tl.cin
+site1_get_and_unzip sixian.cin
+site1_get_and_unzip kks_tl.cin
+site1_get_and_unzip phofsi.cin
+site1_get_and_unzip tlpa.cin

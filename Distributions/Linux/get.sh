@@ -15,6 +15,7 @@ function site1_get_and_unzip()
     local filename=$1
 
     install -d DataTables
+    echo "Fetching and unzip $filename..."
     get_and_unzip http://ftp.kh.edu.tw/odp/OXIM/cin_tables/$filename.gz DataTables/$filename
 }
 
@@ -28,7 +29,6 @@ site1_get_and_unzip thai.cin
 site1_get_and_unzip vims.cin 
 site1_get_and_unzip viqr.cin
 site1_get_and_unzip pinyin0.cin
-site1_get_and_unzip wubizixing2.cin
 site1_get_and_unzip ile.cin
 site1_get_and_unzip jyutping0.cin
 site1_get_and_unzip cangjie.cin

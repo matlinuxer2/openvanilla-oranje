@@ -129,7 +129,7 @@ cin_asia = $(CIN_asia)
 endif
 
 
-ovimgenericdir = $(libdir)/openvanilla/OVIMGeneric
+ovimgenericdir = $(datadir)/openvanilla/OVIMGeneric
 
 ovimgeneric_DATA= \
 $(cin_jp_JP) \

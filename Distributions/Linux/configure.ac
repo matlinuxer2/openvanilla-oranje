@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.63])
-AC_INIT([openvanilla-modules], [0.9.0a1.2], [])
+AC_INIT([openvanilla-modules], [0.9.0a1.3], [])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_HEADERS([config.h])
@@ -44,7 +44,7 @@ AC_CHECK_FUNCS([bzero mkdir munmap rmdir select strcasecmp strchr strcspn strspn
 AC_ARG_ENABLE([asia],
             [AS_HELP_STRING([--enable-asia],
               [enable input methods collection for asia common (default=yes)])],
-            [with__asia="$withval"],
+            [with__asia="$enableval"],
             [with__asia=yes])
 AM_CONDITIONAL(WITH_asia, test x$with__asia != xno )
 

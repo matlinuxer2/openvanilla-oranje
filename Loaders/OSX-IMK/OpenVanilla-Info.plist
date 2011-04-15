@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>OPVN</string>
 	<key>CFBundleVersion</key>
-	<string>0.9.0a1</string>
+	<string>0.9.1</string>
 	<key>InputMethodConnectionName</key>
 	<string>OpenVanilla_090_Connection</string>
 	<key>InputMethodServerControllerClass</key>
@@ -41,5 +41,12 @@ All Rights Reserved.</string>
 	<string>org.openvanilla.inputmethod.LoaderIMK</string>
 	<key>tsInputMethodIconFileKey</key>
 	<string>OpenVanillaSmall.icns</string>
+    <key>TISIntendedLanguage</key>
+    <string>zh-Hant</string>
+    <key>tsInputMethodCharacterRepertoireKey</key>
+    <array>
+            <string>Hant</string>
+            <string>Hans</string>
+    </array>	
 </dict>
 </plist>

@@ -1,7 +1,6 @@
+// POJ-Holo.h: Definition of POJ-Holo's key sequence
 //
-// ComponentConfig.h
-//
-// Copyright (c) 2004-2009 The OpenVanilla Project (http://openvanilla.org)
+// Copyright (c) 2004-2008 The OpenVanilla Project (http://openvanilla.org)
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -29,33 +28,54 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef ComponentConfig_h
-#define ComponentConfig_h
+#ifndef __POJHolo_h
+#define __POJHolo_h
 
-// configurables
-#define TSMC_VERSION            0x00090100	// OpenVanilla 0.9.1
-#define TSMC_VENDOR             'opvn'
-#define TSMC_NAME               "OpenVanilla"
-#define TSMC_NAME_LENGTH        $"0b"
-#define TSMC_BUNDLE_ID          "org.openvanilla.LoaderTSM"
-#define TSMC_BUNDLE_ID_LENGTH   $"19"
-#define TSMC_LOADER_APP_NAME			@"OVLoaderServer.app"
-#define TSMC_SERVER_CONNECTION_NAME		@"OpenVanilla_090_Connection"
-#define TSMC_LOADER_SERVER_BUNDLE_ID	@"org.openvanilla.LoaderServer"
+// keyboard layouts
+enum {
+    POJ_Holo_ToneByNumber=0,
+    POJ_Holo_ToneByPreceedingSymbol=1,
+    POJ_Holo_ToneBySucceedingSymbol=2
+};
 
-// change this if you want to do different stuff
-#define TSMC_SCRIPT				2           // smTradCinese
-#define TSMC_LANGUAGE           19          // langtradChinese
-#define TSMC_RESOURCE_ID        16896       // (15872+script_id*512) here script_id=smTradChinese
+// OU encoding
+enum {
+    OU_EncodedBy_CDRA=true
+};
 
-// derived variables
-#define TSMC_PENCIL_MENU_ID		TSMC_RESOURCE_ID + 1
-#define TSMC_FLAGS              0x8000 + TSMC_SCRIPT * 0x100 + TSMC_LANGUAGE
-#define TARGET_REZ_MAC_PPC          1
-#define TARGET_REZ_MAC_X86          1
+const int POJ_Holo_MaxSeqLen=16, POJ_Holo_MaxBufLen=64;
+
+class POJHoloKeySequence
+{
+public:
+    POJHoloKeySequence();
+    
+    bool isEmpty();
+    void clear();
+
+    bool isComposeKey(char c);
+    bool add(char c, int layout=POJ_Holo_ToneByNumber);
+    void remove();
+
+    void normalize();           // normalize before finalize
+    const char *sequence();
+    const char *finalize();     // return finalized sequence (+ tone)
+    const char *compose(bool pureascii, bool useDotComposing);
+
+    int toneMark(char c);
+    
+protected:
+    int len;
+    char seq[POJ_Holo_MaxSeqLen];
+    char composebuf[POJ_Holo_MaxBufLen];
+
+    int presettone;
+    int prebindwait;
+    int bindvowel;
+    
+    // service functions
+    int vowelorder(char c);
+    const char *vowel2tone(char c, int tone, bool ou_encoding);
+};
 
 #endif
-
-//
-// Free Tibet
-//
